@@ -39,6 +39,10 @@ import('puppeteer-extra-plugin-stealth/evasions/webgl.vendor');
 import('puppeteer-extra-plugin-stealth/evasions/window.outerdimensions');
 // @ts-ignore
 import('puppeteer-extra-plugin-stealth/evasions/defaultArgs');
+// @ts-ignore
+import('puppeteer-extra-plugin-user-preferences');
+// @ts-ignore
+import('puppeteer-extra-plugin-user-data-dir');
 
 import StealthPlugin from 'puppeteer-extra-plugin-stealth';
 import AdblockerPlugin  from 'puppeteer-extra-plugin-adblocker'
