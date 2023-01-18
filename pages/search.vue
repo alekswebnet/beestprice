@@ -10,7 +10,7 @@ const main = useMainStore();
 
 async function search(query, stores) {
   main.productsQuery = query
-  main.productsStores = stores.split(',')
+  if (stores) main.productsStores = stores.split(',')
   main.productsPending = true
   const data = await $fetch(`${window.location.origin}/api/search?qr=${query}${stores ? '&stores=' + stores : ''}`)
   main.products = data

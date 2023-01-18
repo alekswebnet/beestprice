@@ -5,6 +5,41 @@ import { getAllStoresConfig } from './stores.service';
 import currency from 'currency.js';
 import puppeteerVanilla from 'puppeteer';
 import { addExtra } from 'puppeteer-extra';
+// @ts-ignore
+import('puppeteer-extra-plugin-stealth/evasions/chrome.app');
+// @ts-ignore
+import('puppeteer-extra-plugin-stealth/evasions/chrome.csi');
+// @ts-ignore
+import('puppeteer-extra-plugin-stealth/evasions/chrome.loadTimes');
+// @ts-ignore
+import('puppeteer-extra-plugin-stealth/evasions/chrome.runtime');
+// @ts-ignore
+import('puppeteer-extra-plugin-stealth/evasions/iframe.contentWindow');
+// @ts-ignore
+import('puppeteer-extra-plugin-stealth/evasions/media.codecs');
+// @ts-ignore
+import('puppeteer-extra-plugin-stealth/evasions/navigator.hardwareConcurrency');
+// @ts-ignore
+import('puppeteer-extra-plugin-stealth/evasions/navigator.languages');
+// @ts-ignore
+import('puppeteer-extra-plugin-stealth/evasions/navigator.permissions');
+// @ts-ignore
+import('puppeteer-extra-plugin-stealth/evasions/navigator.plugins');
+// @ts-ignore
+import('puppeteer-extra-plugin-stealth/evasions/navigator.vendor');
+// @ts-ignore
+import('puppeteer-extra-plugin-stealth/evasions/navigator.webdriver');
+// @ts-ignore
+import('puppeteer-extra-plugin-stealth/evasions/sourceurl');
+// @ts-ignore
+import('puppeteer-extra-plugin-stealth/evasions/user-agent-override');
+// @ts-ignore
+import('puppeteer-extra-plugin-stealth/evasions/webgl.vendor');
+// @ts-ignore
+import('puppeteer-extra-plugin-stealth/evasions/window.outerdimensions');
+// @ts-ignore
+import('puppeteer-extra-plugin-stealth/evasions/defaultArgs');
+
 import StealthPlugin from 'puppeteer-extra-plugin-stealth';
 import AdblockerPlugin  from 'puppeteer-extra-plugin-adblocker'
 import * as stringSimilarity from 'string-similarity';
