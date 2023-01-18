@@ -5,45 +5,6 @@ import { getAllStoresConfig } from './stores.service';
 import currency from 'currency.js';
 import puppeteerVanilla from 'puppeteer';
 import { addExtra } from 'puppeteer-extra';
-// @ts-ignore
-import('puppeteer-extra-plugin-stealth/evasions/chrome.app/index');
-// @ts-ignore
-import('puppeteer-extra-plugin-stealth/evasions/chrome.csi/index');
-// @ts-ignore
-import('puppeteer-extra-plugin-stealth/evasions/chrome.loadTimes/index');
-// @ts-ignore
-import('puppeteer-extra-plugin-stealth/evasions/chrome.runtime/index');
-// @ts-ignore
-import('puppeteer-extra-plugin-stealth/evasions/iframe.contentWindow/index');
-// @ts-ignore
-import('puppeteer-extra-plugin-stealth/evasions/media.codecs/index');
-// @ts-ignore
-import('puppeteer-extra-plugin-stealth/evasions/navigator.hardwareConcurrency/index');
-// @ts-ignore
-import('puppeteer-extra-plugin-stealth/evasions/navigator.languages/index');
-// @ts-ignore
-import('puppeteer-extra-plugin-stealth/evasions/navigator.permissions/index');
-// @ts-ignore
-import('puppeteer-extra-plugin-stealth/evasions/navigator.plugins/index');
-// @ts-ignore
-import('puppeteer-extra-plugin-stealth/evasions/navigator.vendor/index');
-// @ts-ignore
-import('puppeteer-extra-plugin-stealth/evasions/navigator.webdriver/index');
-// @ts-ignore
-import('puppeteer-extra-plugin-stealth/evasions/sourceurl/index');
-// @ts-ignore
-import('puppeteer-extra-plugin-stealth/evasions/user-agent-override/index');
-// @ts-ignore
-import('puppeteer-extra-plugin-stealth/evasions/webgl.vendor/index');
-// @ts-ignore
-import('puppeteer-extra-plugin-stealth/evasions/window.outerdimensions/index');
-// @ts-ignore
-import('puppeteer-extra-plugin-stealth/evasions/defaultArgs/index');
-// @ts-ignore
-import('puppeteer-extra-plugin-user-preferences/index');
-// @ts-ignore
-import('puppeteer-extra-plugin-user-data-dir/index');
-
 import StealthPlugin from 'puppeteer-extra-plugin-stealth';
 import AdblockerPlugin  from 'puppeteer-extra-plugin-adblocker'
 import * as stringSimilarity from 'string-similarity';
