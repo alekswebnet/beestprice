@@ -3,6 +3,7 @@
   "name": "beestprice",
   "version": "1.0.0",
   "license": "MIT",
+  "type":  "module",
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
