@@ -3,14 +3,18 @@ import { IProduct, IStoreConfig, Store } from '~~/types';
 import { Cluster } from 'puppeteer-cluster';
 import { getAllStoresConfig } from './stores.service';
 import currency from 'currency.js';
-import puppeteerVanilla from 'puppeteer';
-import { addExtra } from 'puppeteer-extra';
-import StealthPlugin from 'puppeteer-extra-plugin-stealth';
-import AdblockerPlugin  from 'puppeteer-extra-plugin-adblocker'
+import edgeChromium from 'chrome-aws-lambda';
+import puppeteer from 'puppeteer-core';
+// import { addExtra } from 'puppeteer-extra';
+// import StealthPlugin from 'puppeteer-extra-plugin-stealth';
+// import AdblockerPlugin  from 'puppeteer-extra-plugin-adblocker'
 import * as stringSimilarity from 'string-similarity';
 
-const puppeteer = addExtra(puppeteerVanilla)
-puppeteer.use(StealthPlugin()).use(AdblockerPlugin({ blockTrackers: true }))
+const LOCAL_CHROME_EXECUTABLE = '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'
+
+// const puppeteerExtra = addExtra(edgeChromium.puppeteer as any);
+
+// puppeteerExtra.use(StealthPlugin()).use(AdblockerPlugin({ blockTrackers: true }))
 
 export const getProductList = async (
   query: string, 
@@ -25,7 +29,9 @@ export const getProductList = async (
     maxConcurrency: 50,
     puppeteer,
     puppeteerOptions: {
-      headless: true
+      executablePath: (await edgeChromium.executablePath || LOCAL_CHROME_EXECUTABLE),
+      args: edgeChromium.args,
+      headless: edgeChromium.headless
     },
     timeout: 30000
   });
