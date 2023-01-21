@@ -3,7 +3,7 @@ import { IProduct, IStoreConfig, Store } from '~~/types';
 import { Cluster } from 'puppeteer-cluster';
 import { getAllStoresConfig } from './stores.service';
 import currency from 'currency.js';
-import edgeChromium from 'chrome-aws-lambda';
+import chromium from '@sparticuz/chromium';
 import puppeteer from 'puppeteer-core';
 // import { addExtra } from 'puppeteer-extra';
 // import StealthPlugin from 'puppeteer-extra-plugin-stealth';
@@ -29,9 +29,9 @@ export const getProductList = async (
     maxConcurrency: 50,
     puppeteer,
     puppeteerOptions: {
-      executablePath: (await edgeChromium.executablePath || LOCAL_CHROME_EXECUTABLE),
-      args: edgeChromium.args,
-      headless: edgeChromium.headless
+      executablePath: (await chromium.executablePath() || LOCAL_CHROME_EXECUTABLE),
+      args: chromium.args,
+      headless: chromium.headless
     },
     timeout: 30000
   });

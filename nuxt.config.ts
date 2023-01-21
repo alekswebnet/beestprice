@@ -14,4 +14,7 @@ export default defineNuxtConfig({
     ],
     'nuxt-icon'
   ],
+  build: {
+    transpile: ['@sparticuz/chromium']
+  }
 })
