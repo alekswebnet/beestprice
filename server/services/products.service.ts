@@ -29,7 +29,7 @@ export const getProductList = async (
     maxConcurrency: 50,
     puppeteer,
     puppeteerOptions: {
-      executablePath: '/files/chromium-v109.0.6-pack.tar',
+      executablePath: 'https://minishopmaister.com.ua/external/chromium-v109.0.6-pack.tar',
       args: chromium.args,
       headless: chromium.headless
     },
