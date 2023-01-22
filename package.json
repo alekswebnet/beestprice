@@ -24,7 +24,7 @@
     "flowbite": "^1.6.1",
     "puppeteer": "^19.5.2",
     "puppeteer-cluster": "^0.23.0",
-    "puppeteer-core": "19.4.0",
+    "puppeteer-core": "^19.5.2",
     "puppeteer-extra": "^3.3.4",
     "puppeteer-extra-plugin-adblocker": "^2.13.5",
     "puppeteer-extra-plugin-stealth": "^2.11.1",

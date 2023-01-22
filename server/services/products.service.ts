@@ -13,6 +13,8 @@ import * as stringSimilarity from 'string-similarity';
 // const puppeteerExtra = addExtra(puppeteer);
 // puppeteerExtra.use(StealthPlugin()).use(AdblockerPlugin({ blockTrackers: true }))
 
+console.log(puppeteer)
+
 export const getProductList = async (
   query: string, 
   stores?: (keyof typeof Store)[]
