@@ -9,7 +9,6 @@ import StealthPlugin from 'puppeteer-extra-plugin-stealth';
 import AdblockerPlugin  from 'puppeteer-extra-plugin-adblocker'
 import * as stringSimilarity from 'string-similarity';
 
-
 const puppeteerExtra = addExtra(puppeteer);
 
 puppeteerExtra.use(StealthPlugin()).use(AdblockerPlugin({ blockTrackers: true }))
@@ -28,11 +27,6 @@ export const getProductList = async (
     puppeteer,
     puppeteerOptions: {
       headless: true,
-      executablePath: '/usr/bin/chromium-browser',
-      args: [
-        '--no-sandbox',
-        '--disable-gpu',
-      ]
     },
     timeout: 30000
   });
