@@ -1,11 +1,18 @@
-import { Page } from 'puppeteer-core';
+import { Page } from 'puppeteer';
 import { IProduct, IStoreConfig, Store } from '~~/types';
+import { Cluster } from 'puppeteer-cluster';
 import { getAllStoresConfig } from './stores.service';
 import currency from 'currency.js';
-import puppeteer from 'puppeteer-core';
+import puppeteer from 'puppeteer';
+import { addExtra } from 'puppeteer-extra';
+import StealthPlugin from 'puppeteer-extra-plugin-stealth';
+import AdblockerPlugin  from 'puppeteer-extra-plugin-adblocker'
 import * as stringSimilarity from 'string-similarity';
 
-const BROWSERLESS_API_KEY = 'e7ad3d3f-128e-4b00-9286-ce20fb36884b';
+
+const puppeteerExtra = addExtra(puppeteer);
+
+puppeteerExtra.use(StealthPlugin()).use(AdblockerPlugin({ blockTrackers: true }))
 
 export const getProductList = async (
   query: string, 
@@ -15,11 +22,26 @@ export const getProductList = async (
   const storesConfig = getAllStoresConfig()
     .filter(config => stores && stores.length ? stores.includes(config.name) : true )
 
-  const browser = await puppeteer.connect({
-    browserWSEndpoint: `wss://chrome.browserless.io?token=${BROWSERLESS_API_KEY}&stealth&blockAds`
+  const cluster = await Cluster.launch({
+    concurrency: Cluster.CONCURRENCY_CONTEXT,
+    maxConcurrency: 50,
+    puppeteer,
+    puppeteerOptions: {
+      headless: true,
+      // executablePath: '/usr/bin/chromium-browser',
+      args: [
+        '--no-sandbox',
+        '--disable-gpu',
+      ]
+    },
+    timeout: 30000
   });
 
-  const task = async ({ page, data: config }: { page: Page, data: IStoreConfig }) => {
+  cluster.on('taskerror', (err, data) => {
+    console.log(`Error crawling ${data}: ${err.message}`)
+  });
+
+  await cluster.task(async ({ page, data: config }: { page: Page, data: IStoreConfig }) => {
     let products = [] as any[]
     const productTitle = config.selectors.product.title
     const productPrice = config.selectors.product.price
@@ -109,22 +131,19 @@ export const getProductList = async (
         link: product.link!.startsWith('/') ? `${config.origin}${product.link}` : product.link,
         thumbnail: product.thumbnail!.startsWith('/') ? `${config.origin}${product.thumbnail}` : product.thumbnail
       }))
-  };
+  });
 
+  try {
+    await Promise.all(storesConfig.map(async (config) => {
+      const result = await cluster.execute(config);
+      results = [...results, ...result || []]
+    }))
+  } catch (err) {
+    console.warn(err);
+  }
 
-  const res = await Promise.all(storesConfig.map(async (config) => {
-    const page = await browser.newPage();
-    let result = null
-    try {
-      result = await task({ page, data: config});
-    } catch (error) {
-      console.warn(error)
-    }
-    results = [...results, ...result || []]
-    return result
-  }))
-
-  await fetch(`https://chrome.browserless.io/kill/all?token=${BROWSERLESS_API_KEY}`)
+  await cluster.idle();
+  await cluster.close();
 
   if (!results.length) return []
   const titles = results.map(item => item.title.toLowerCase());
