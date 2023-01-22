@@ -28,7 +28,7 @@ export const getProductList = async (
     puppeteer,
     puppeteerOptions: {
       headless: true,
-      // executablePath: '/usr/bin/chromium-browser',
+      executablePath: '/usr/bin/chromium-browser',
       args: [
         '--no-sandbox',
         '--disable-gpu',
