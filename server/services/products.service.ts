@@ -3,7 +3,7 @@ import { IProduct, IStoreConfig, Store } from '~~/types';
 import { Cluster } from 'puppeteer-cluster';
 import { getAllStoresConfig } from './stores.service';
 import currency from 'currency.js';
-import puppeteer from 'puppeteer-core';
+import puppeteer from 'puppeteer';
 import chromium from '@sparticuz/chromium'
 import { addExtra } from 'puppeteer-extra';
 import StealthPlugin from 'puppeteer-extra-plugin-stealth';
@@ -25,13 +25,6 @@ export const getProductList = async (
     concurrency: Cluster.CONCURRENCY_CONTEXT,
     maxConcurrency: 50,
     puppeteer,
-    puppeteerOptions: {
-      args: chromium.args,
-      defaultViewport: chromium.defaultViewport,
-      executablePath: await chromium.executablePath(),
-      headless: chromium.headless,
-      ignoreHTTPSErrors: true,
-    },
     timeout: 30000
   });
 
