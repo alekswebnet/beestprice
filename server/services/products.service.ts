@@ -27,6 +27,7 @@ export const getProductList = async (
     puppeteer,
     puppeteerOptions: {
       headless: true,
+      args: ['--no-sandbox']
     },
     timeout: 30000
   });
