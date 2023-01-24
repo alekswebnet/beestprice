@@ -32,6 +32,6 @@
     "vite-plugin-pug": "^0.3.2"
   },
   "engines": {
-    "node": "16.x"
+    "node": "14.x"
   }
 }
