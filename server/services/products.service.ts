@@ -1,19 +1,17 @@
-import { Page } from 'puppeteer';
 import { IProduct, IStoreConfig, Store } from '~~/types';
-import { Cluster } from 'puppeteer-cluster';
+import { Cluster, } from 'puppeteer-cluster';
 import { getAllStoresConfig } from './stores.service';
 import currency from 'currency.js';
-import puppeteer from 'puppeteer';
-import chromium from '@sparticuz/chromium'
+import puppeteer, { Page } from 'puppeteer-core';
+import chromium from '@sparticuz/chromium';
 import { addExtra } from 'puppeteer-extra';
 import StealthPlugin from 'puppeteer-extra-plugin-stealth';
 import AdblockerPlugin  from 'puppeteer-extra-plugin-adblocker'
 import * as stringSimilarity from 'string-similarity';
 
 // const puppeteerExtra = addExtra(puppeteer);
-// puppeteerExtra.use(StealthPlugin()).use(AdblockerPlugin({ blockTrackers: true }))
 
-console.log(puppeteer)
+// puppeteerExtra.use(StealthPlugin()).use(AdblockerPlugin({ blockTrackers: true }))
 
 export const getProductList = async (
   query: string, 
@@ -27,6 +25,13 @@ export const getProductList = async (
     concurrency: Cluster.CONCURRENCY_CONTEXT,
     maxConcurrency: 50,
     puppeteer,
+    puppeteerOptions: {
+      args: chromium.args,
+      defaultViewport: chromium.defaultViewport,
+      headless: chromium.headless,
+      ignoreHTTPSErrors: true,
+      executablePath: await chromium.executablePath()
+    },
     timeout: 30000
   });
 
