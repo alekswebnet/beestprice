@@ -16,6 +16,7 @@
     "@types/string-similarity": "^4.0.0",
     "nuxt": "3.0.0",
     "nuxt-icon": "^0.1.8",
+    "puppeteer": "19.4.0",
     "puppeteer-core": "19.4.0"
   },
   "dependencies": {
