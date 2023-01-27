@@ -8,9 +8,9 @@ import StealthPlugin from 'puppeteer-extra-plugin-stealth';
 import AdblockerPlugin  from 'puppeteer-extra-plugin-adblocker'
 import * as stringSimilarity from 'string-similarity';
 
-// const puppeteerExtra = addExtra(puppeteer);
+const puppeteerExtra = addExtra(puppeteer);
 
-// puppeteerExtra.use(StealthPlugin()).use(AdblockerPlugin({ blockTrackers: true }))
+puppeteerExtra.use(StealthPlugin()).use(AdblockerPlugin({ blockTrackers: true }))
 
 export const getProductList = async (
   query: string, 
@@ -22,10 +22,12 @@ export const getProductList = async (
 
   const cluster = await Cluster.launch({
     concurrency: Cluster.CONCURRENCY_CONTEXT,
-    maxConcurrency: 50,
-    puppeteer,
+    maxConcurrency: 10,
+    puppeteer: puppeteerExtra,
     puppeteerOptions: {
-      headless: true
+      headless: true,
+      executablePath: '/usr/bin/chromium-browser',
+      args: ['--no-sandbox', '--disable-setuid-sandbox']
     },
     timeout: 30000
   });
