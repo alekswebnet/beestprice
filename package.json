@@ -3,6 +3,7 @@
   "name": "beestprice",
   "version": "1.0.0",
   "license": "MIT",
+  "type": "commonjs",
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
@@ -13,7 +14,10 @@
   "devDependencies": {
     "@types/string-similarity": "^4.0.0",
     "nuxt": "3.0.0",
-    "nuxt-icon": "^0.1.8"
+    "vite-plugin-pug": "^0.3.2",
+    "nuxt-icon": "^0.1.8",
+    "puppeteer-core": "19.4.0",
+    "puppeteer": "19.4.0"
   },
   "dependencies": {
     "@nuxtjs/tailwindcss": "^6.1.3",
@@ -24,12 +28,9 @@
     "puppeteer-extra": "^3.3.4",
     "puppeteer-extra-plugin-adblocker": "^2.13.5",
     "puppeteer-extra-plugin-stealth": "^2.11.1",
-    "string-similarity": "^4.0.4",
-    "vite-plugin-pug": "^0.3.2",
-    "puppeteer": "19.4.0",
-    "puppeteer-core": "19.4.0"
+    "string-similarity": "^4.0.4"
   },
   "engines": {
-    "node": "14.x"
+    "node": "16.x"
   }
 }

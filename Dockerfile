@@ -1,38 +1,38 @@
-FROM node:lts-alpine as builder
+FROM node:16-alpine3.16
 
-# Installs latest Chromium (109) package.
-RUN apk add --no-cache \
-      chromium \
-      nss \
-      freetype \
-      harfbuzz \
-      ca-certificates \
-      ttf-freefont \
-      yarn
+RUN apk --update add --no-cache \
+        python3 \
+        make \
+        g++ \
+        chromium \
+        nss \
+        freetype \
+        freetype-dev \
+        harfbuzz \
+        ca-certificates && \
+    addgroup -S pptruser && \
+    adduser -S pptruser -G pptruser && \
+    mkdir -p /home/pptruser/Downloads && \
+    chown -R pptruser:pptruser /home/pptruser && \
+    mkdir -p /app && \
+    chown -R pptruser:pptruser /app && \
+    mkdir -p /var/cache/screenshoter && \
+    chown -R pptruser:pptruser /var/cache/screenshoter
+
+WORKDIR /app
+
+USER pptruser
+
+COPY --chown=pptruser:pptruser package*.json ./
 
 # Tell Puppeteer to skip installing Chrome. We'll be using the installed package.
-ENV PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium-browser
+ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD true
 
-# ENV NODE_ENV production
-WORKDIR /home/node
+RUN npm install --unsafe-perm
 
-COPY package*.json ./
+COPY --chown=pptruser:pptruser . .
 
-RUN yarn install
-
-COPY . .
-
-RUN yarn build 
-
-# Run
-FROM node:lts-alpine as prod
-
-ENV NODE_ENV production
-USER node
-WORKDIR /home/node
-
-COPY --from=builder --chown=node:node /home/node/package*.json ./
-COPY --from=builder --chown=node:node /home/node/.output/ ./.output/
+RUN npm run build
 
 EXPOSE 3000
 
