@@ -26,8 +26,10 @@ export const getProductList = async (
     puppeteer: puppeteerExtra,
     puppeteerOptions: {
       headless: true,
-      executablePath: '/usr/bin/chromium-browser',
-      args: ['--no-sandbox', '--disable-setuid-sandbox']
+      executablePath: process.env.NODE_ENV === 'production'
+        ? '/usr/bin/chromium-browser'
+        : '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'
+      // args: ['--no-sandbox', '--disable-setuid-sandbox']
     },
     timeout: 30000
   });
@@ -48,7 +50,6 @@ export const getProductList = async (
     const resultLinkSelector = config.selectors.search.results.link
     
     await page.goto(`${config.origin}${config.searchPrefix(query)}`, { waitUntil: 'networkidle2', timeout: 60000 })
-    await page.waitForSelector(`${resultsSelector}, ${productTitle}`, { timeout: 5000 })
 
     const count = await page.$$eval(resultsSelector, a => a.length)
     const isSingle = await page.$$eval(productTitle, a => a.length)
