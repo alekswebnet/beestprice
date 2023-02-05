@@ -199,4 +199,26 @@ export const getAllStoresConfig = (): IStoreConfig[] => ([
       }
     }
   },
+  {
+    name: 'Moyo',
+    origin: 'https://www.moyo.ua',
+    searchPrefix: (query) => `/ua/search/new/?q=${query}`,
+    selectors: {
+      search: {
+        results: {
+          container: '.search_products',
+          item: '.product-item',
+          title: 'a.product-item_name',
+          price: '.sale',
+          link: 'a.product-item_img',
+          thumbnail: 'img.first-image'
+        }
+      },
+      product: {
+        title: 'h1.product_name',
+        price: '.product_price_current.sale > span',
+        thumbnail: '.product_image_item img'
+      }
+    }
+  },
 ])

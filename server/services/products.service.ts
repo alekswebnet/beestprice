@@ -51,20 +51,18 @@ export const getProductList = async (
     
     await page.goto(`${config.origin}${config.searchPrefix(query)}`, { waitUntil: 'networkidle2', timeout: 60000 })
 
+    await page.evaluate(async () => {
+      await new Promise(resolve => setTimeout(resolve, 2000));
+      window.scrollTo({ left: 0, top: document.body.scrollHeight, behavior: 'smooth' })
+      await new Promise(resolve => setTimeout(resolve, 2000));
+    });
+
     const count = await page.$$eval(resultsSelector, a => a.length)
     const isSingle = await page.$$eval(productTitle, a => a.length)
 
-    console.warn(config.name, count, isSingle)
+    console.warn(`Store: ${config.name}`, `Products: ${count}`, `Single product: ${isSingle}`)
 
     if (count) {
-      await page.evaluate(async () => {
-        window.scrollTo({ left: 0, top: document.body.scrollHeight, behavior: 'smooth' })
-        await new Promise(resolve => setTimeout(resolve, 2000));
-      });
-
-      const tcount = await page.$$eval(resultTitleSelector, a => a.length)
-      console.log(tcount)
-  
       for (let index = 0; index < count; index++) {
         const product = await page.$$eval(`${resultsSelector}`, async (
           el, 
@@ -75,7 +73,7 @@ export const getProductList = async (
           resultLinkSelector
         ) => {
           const title =  el[index].querySelector(resultTitleSelector)?.textContent
-          const price = el[index].querySelector(resultPriceSelector)?.textContent
+          const price = el[index].querySelector(resultPriceSelector)?.textContent?.split('+')[0]
           const thumbnail = el[index].querySelector(resultThumbnailSelector)?.getAttribute('src')
           const link = el[index].querySelector(resultLinkSelector)?.getAttribute('href')
   
@@ -149,6 +147,10 @@ export const getProductList = async (
   )
   return productsSimilarity.ratings
     .map(item => ({ ...results[titles.indexOf(item.target)], rating: item.rating }))
-    // Sort by price by default
-    .sort((a, b) => a.price - b.price);
+    .sort((a, b) => {          
+      if (a.price > b.price) {
+        return a.rating - a.rating;
+      }
+      return -1;
+   });
 }

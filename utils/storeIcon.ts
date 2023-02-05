@@ -9,7 +9,8 @@ const storesIcons: Record<keyof typeof Store, string> = {
   Olx: '/img/olx.png',
   Prom: '/img/prom.png',
   FUa: '/img/fua.svg',
-  Maudau: '/img/maudau.svg'
+  Maudau: '/img/maudau.svg',
+  Moyo: '/img/moyo.svg'
 };
 
 export const getStoreIcon = (store: keyof typeof Store): string => {

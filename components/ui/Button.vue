@@ -19,3 +19,20 @@ a(
 )
   slot
 </template>
+
+<script setup>
+const props = defineProps({
+  disabled: {
+    type: [Boolean],
+    default: false
+  }
+})
+</script>
+
+<style scoped>
+  a[disabled] {
+    pointer-events: none;
+    background: gainsboro;
+    border-color: lightgray;
+  }
+</style>
