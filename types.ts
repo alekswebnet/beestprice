@@ -7,7 +7,8 @@ export enum Store {
   Olx = 'Olx',
   Prom = 'Prom',
   FUa = 'FUa',
-  Maudau = 'Maudau'
+  Maudau = 'Maudau',
+  Moyo = 'Moyo'
 }
 
 export interface IStoreConfig {
