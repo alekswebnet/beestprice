@@ -4,7 +4,7 @@ import { Store } from "~~/types";
 export default defineEventHandler(async (event) => {
   const query = getQuery(event).qr || ''
   const stores = getQuery(event).stores || ''
-  console.log(stores)
+  
   if (query && event.node.req.method === 'GET') {
     return await getProductList(query as string, stores as (keyof typeof Store)[]);
   }
