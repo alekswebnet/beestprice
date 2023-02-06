@@ -9,7 +9,7 @@ export const postMessage = (message: string) => {
       },
       body: JSON.stringify({
         broadcast_list:[
-          // 'T7ZOndq3o1XJWs/NYQz+Kw==',
+          'T7ZOndq3o1XJWs/NYQz+Kw==',
           'g/8hrePW4LMcBMmlOAKYUw=='
         ],
         sender:{

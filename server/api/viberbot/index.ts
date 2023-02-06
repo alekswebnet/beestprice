@@ -6,7 +6,7 @@ export default defineEventHandler(async (event) => {
   if (event.node.req.method === 'GET') {
     const weather = await getCurrentWeaher()
     const currency = await getCurrencyRate()
-    const message = `Температура повітря: ${weather.current_weather.temperature}° \nКурс USD: ${currency[0].rate}`
+    const message = `Доброго ранку! \nТемпература повітря: ${weather.current_weather.temperature}° \nКурс USD: ${currency[0].rate}`
 
     return postMessage(message)
   }
