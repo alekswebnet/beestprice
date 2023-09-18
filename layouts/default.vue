@@ -3,7 +3,7 @@ TheHeader
 slot
 </template>
 
-<style lang="postcss">
+<style>
 body, html {
   height: 100%;
   @apply bg-slate-100

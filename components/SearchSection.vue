@@ -2,7 +2,7 @@
 .container.mx-auto
   .flex.w-full(v-if="getProductsPending")
     .flex.mx-auto
-      UiLoader.text-darkblue(size="24px")
+      ThemeLoader.text-darkblue(size="24px")
       span.ml-3.text-lg.tex-darkblue Searching for products, please wait...
   .flex.items-center.mb-3.text-lg(v-if="!getProductsPending && getProducts" class="md:mb-6")
     span.font-bold.ordinal.text-gray-500 {{ getProducts.length }} 
@@ -16,9 +16,9 @@
       :href="product.link" 
       target="_blank"
     )
-      UiCard(:rating="product.rating")
+      ThemeCard(:rating="product.rating")
         template(v-slot:title) 
-          UiCuttedText(:lines="3")
+          ThmeCuttedText(:lines="3")
             span {{ product.title }}
         template(v-slot:thumbnail)
           img.w-auto.mx-auto(:src="product.thumbnail || null" class="md:h-[100px] max-h-[100px] max-w-[100px] mw-md-auto")
@@ -36,7 +36,7 @@ const { getProducts, getProductsPending, getProductsQuery } = storeToRefs(main);
 const relevantCoef = 0.15
 </script>
 
-<style lang="postcss" scoped>
+<style scoped>
 .products {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));

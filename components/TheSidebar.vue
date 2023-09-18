@@ -14,9 +14,9 @@ aside(aria-label="Sidebar")
             .h-6.w-6.flex.items-center.justify-center.mr-2
               img.w-auto.max-h-4(:src="getStoreIcon(store)")
             h4 {{ store }}
-          UiSwitch.ml-auto(v-model="productsStores" :value="store")
+          ThemeSwitch.ml-auto(v-model="productsStores" :value="store")
     .footer.pb-6.px-6
-      UiButton.block.w-full(@click="apply") Appy filters and search
+      ThemeButton.block.w-full(@click="apply") Appy filters and search
 </template>
 
 <script setup>
@@ -33,7 +33,7 @@ function apply() {
 </script>
 
 
-<style lang="postcss" scoped>
+<style scoped>
 aside {
   width: 360px;
   position: sticky;
