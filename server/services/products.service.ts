@@ -7,6 +7,7 @@ import { addExtra } from 'puppeteer-extra';
 import StealthPlugin from 'puppeteer-extra-plugin-stealth';
 import AdblockerPlugin  from 'puppeteer-extra-plugin-adblocker'
 import * as stringSimilarity from 'string-similarity';
+import chromium from '@sparticuz/chromium';
 
 const puppeteerExtra = addExtra(puppeteer);
 
@@ -25,9 +26,12 @@ export const getProductList = async (
     maxConcurrency: 10,
     puppeteer: puppeteerExtra,
     puppeteerOptions: {
-      headless: true,
+      args: process.env.NODE_ENV === 'production' ? chromium.args : [],
+      defaultViewport: process.env.NODE_ENV === 'production' ? chromium.defaultViewport : null,
+      headless: process.env.NODE_ENV === 'production' ? chromium.headless : false,
+      ignoreHTTPSErrors: true,
       executablePath: process.env.NODE_ENV === 'production'
-        ? '/usr/bin/chromium-browser'
+        ? await chromium.executablePath()
         : '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'
       // args: ['--no-sandbox', '--disable-setuid-sandbox']
     },

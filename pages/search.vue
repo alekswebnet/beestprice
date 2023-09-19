@@ -4,9 +4,10 @@
   TheSidebar.hidden(class="lg:block")
 </template>
 
-<script>
+<script setup>
 import { useMainStore } from '@/stores/main'
-const main = useMainStore();
+const main = useMainStore()
+const route = useRoute()
 
 async function search(query, stores) {
   main.productsQuery = query
@@ -17,16 +18,13 @@ async function search(query, stores) {
   main.productsPending = false
 }
 
-export default {
-  beforeRouteEnter: async function (to, from, next) {
-    const { query, stores } = to.query
-    search(query, stores)
-    return next()
-  },
-  beforeRouteUpdate: async function (to, from, next) {
-    const { query, stores } = to.query
-    search(query, stores)
-    return next()
-  }
-}
+onMounted(() => {
+  const { query, stores } = route.query
+  search(query, stores)
+})
+
+onBeforeRouteUpdate((to) => {
+  const { query, stores } = to.query
+  search(query, stores)
+})
 </script>

@@ -15,13 +15,14 @@
     "@types/string-similarity": "^4.0.0",
     "nuxt": "^3.6.5",
     "nuxt-icon": "^0.1.8",
-    "puppeteer": "19.4.0",
+    "puppeteer": "21.1.0",
     "puppeteer-core": "19.4.0",
     "vite-plugin-pug": "^0.3.2"
   },
   "dependencies": {
     "@nuxtjs/tailwindcss": "^6.1.3",
     "@pinia/nuxt": "^0.4.6",
+    "@sparticuz/chromium": "^117.0.0",
     "currency.js": "^2.0.4",
     "flowbite": "^1.6.1",
     "puppeteer-cluster": "^0.23.0",
