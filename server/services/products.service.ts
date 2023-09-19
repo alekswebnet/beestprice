@@ -28,12 +28,14 @@ export const getProductList = async (
     maxConcurrency: 10,
     puppeteer: puppeteerExtra,
     puppeteerOptions: {
-      args: process.env.NODE_ENV === 'production' ? chromium.args : [],
+      args: process.env.NODE_ENV === 'production' ? args: [...chromium.args, '--hide-scrollbars', '--disable-web-security'], : [],
       defaultViewport: process.env.NODE_ENV === 'production' ? chromium.defaultViewport : null,
       headless: process.env.NODE_ENV === 'production' ? chromium.headless : false,
       ignoreHTTPSErrors: true,
       executablePath: process.env.NODE_ENV === 'production'
-        ? await chromium.executablePath()
+        ? await chromium.executablePath(
+          `https://github.com/Sparticuz/chromium/releases/download/v116.0.0/chromium-v116.0.0-pack.tar`
+        )
         : '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'
       // args: ['--no-sandbox', '--disable-setuid-sandbox']
     },
