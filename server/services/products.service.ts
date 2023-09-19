@@ -4,16 +4,16 @@ import { getAllStoresConfig } from './stores.service';
 import currency from 'currency.js';
 import puppeteer, { Page } from 'puppeteer';
 import { addExtra } from 'puppeteer-extra';
-import StealthPlugin from 'puppeteer-extra-plugin-stealth';
+// import StealthPlugin from 'puppeteer-extra-plugin-stealth';
 import AdblockerPlugin  from 'puppeteer-extra-plugin-adblocker'
 import * as stringSimilarity from 'string-similarity';
 import chromium from '@sparticuz/chromium';
 
 const puppeteerExtra = addExtra(puppeteer);
-const stealth = StealthPlugin();
-stealth.enabledEvasions.delete('user-agent-override');
+// const stealth = StealthPlugin();
+// stealth.enabledEvasions.delete('user-agent-override');
 
-puppeteerExtra.use(stealth).use(AdblockerPlugin({ blockTrackers: true }))
+puppeteerExtra.use(AdblockerPlugin({ blockTrackers: true }))
 
 export const getProductList = async (
   query: string, 
