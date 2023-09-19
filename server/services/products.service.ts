@@ -10,8 +10,10 @@ import * as stringSimilarity from 'string-similarity';
 import chromium from '@sparticuz/chromium';
 
 const puppeteerExtra = addExtra(puppeteer);
+const stealth = StealthPlugin();
+stealth.enabledEvasions.delete('user-agent-override');
 
-puppeteerExtra.use(StealthPlugin()).use(AdblockerPlugin({ blockTrackers: true }))
+puppeteerExtra.use(stealth).use(AdblockerPlugin({ blockTrackers: true }))
 
 export const getProductList = async (
   query: string, 
