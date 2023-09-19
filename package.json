@@ -27,8 +27,11 @@
     "flowbite": "^1.6.1",
     "puppeteer-cluster": "^0.23.0",
     "puppeteer-extra": "^3.3.4",
-    "puppeteer-extra-plugin-adblocker": "^2.13.5",
-    "puppeteer-extra-plugin-stealth": "^2.11.1",
+    "puppeteer-extra-plugin-adblocker": "^2.13.6",
+    "puppeteer-extra-plugin-stealth": "2.11.2",
     "string-similarity": "^4.0.4"
+  },
+  "pkg": {
+    "assets": "node_modules/puppeteer-extra-plugin-stealth/**/*.*"
   }
 }

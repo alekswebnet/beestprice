@@ -5046,7 +5046,7 @@ puppeteer-core@21.1.0:
     devtools-protocol "0.0.1159816"
     ws "8.13.0"
 
-puppeteer-extra-plugin-adblocker@^2.13.5:
+puppeteer-extra-plugin-adblocker@^2.13.6:
   version "2.13.6"
   resolved "https://registry.yarnpkg.com/puppeteer-extra-plugin-adblocker/-/puppeteer-extra-plugin-adblocker-2.13.6.tgz#99828243579b59ed81e8b1da23d16a3a0dbae557"
   integrity sha512-AftgnUZ1rg2RPe9RpX6rkYAxEohwp3iFeGIyjsAuTaIiw4VLZqOb1LSY8/S60vAxpeat60fbCajxoUetmLy4Dw==
@@ -5056,7 +5056,7 @@ puppeteer-extra-plugin-adblocker@^2.13.5:
     node-fetch "^2.6.0"
     puppeteer-extra-plugin "^3.2.3"
 
-puppeteer-extra-plugin-stealth@^2.11.1:
+puppeteer-extra-plugin-stealth@2.11.2:
   version "2.11.2"
   resolved "https://registry.yarnpkg.com/puppeteer-extra-plugin-stealth/-/puppeteer-extra-plugin-stealth-2.11.2.tgz#bd3f5a1781cac8a98c983d148086585a84fcc8f1"
   integrity sha512-bUemM5XmTj9i2ZerBzsk2AN5is0wHMNE6K0hXBzBXOzP5m5G3Wl0RHhiqKeHToe/uIH8AoZiGhc1tCkLZQPKTQ==
