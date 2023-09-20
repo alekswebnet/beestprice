@@ -28,7 +28,7 @@ export const getProductList = async (
     maxConcurrency: 10,
     puppeteer: puppeteerExtra,
     puppeteerOptions: {
-      args: process.env.NODE_ENV === 'production' ? [...chromium.args, '--hide-scrollbars', '--disable-web-security'], : [],
+      args: process.env.NODE_ENV === 'production' ? [...chromium.args, '--hide-scrollbars', '--disable-web-security'] : [],
       defaultViewport: process.env.NODE_ENV === 'production' ? chromium.defaultViewport : null,
       headless: process.env.NODE_ENV === 'production' ? chromium.headless : false,
       ignoreHTTPSErrors: true,
